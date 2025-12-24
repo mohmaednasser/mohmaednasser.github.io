@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio | Mohamed Helal</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Montserrat', sans-serif; background:#000; overflow-x: hidden; }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      z-index: 100;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    .navbar ul li a {
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-decoration: none;
+      position: relative;
+    }
+    .navbar ul li a.active {
+      color: #FFD700;
+      text-shadow: 0 0 6px rgba(255,215,0,.7);
+    }
+    .navbar ul li a.active::after {
+      content:"";
+      position:absolute;
+      bottom:-6px;
+      left:0;
+      width:100%;
+      height:2px;
+      background:#FFD700;
+      box-shadow:0 0 8px rgba(255,215,0,.9);
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: url("hero.jpg") center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    .overlay {
+      position:absolute;
+      inset:0;
+      background:black;
+      opacity:0;
+      z-index:1;
+    }
+    .hero-content {
+      position:absolute;
+      inset:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:2;
+      text-align:center;
+    }
+    .hero h1 {
+      font-size:70px;
+      font-weight:900;
+      letter-spacing:6px;
+      color:#fff;
+    }
+
+    /* HERO ICONS (Initial Section) */
+    .hero-social {
+      position:absolute;
+      bottom:35px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      gap:22px;
+      z-index:2;
+    }
+    .hero-social a {
+      color:#fff;
+      font-size:22px;
+      transition: 0.3s;
+    }
+    .hero-social a:hover { color: #FFD700; }
+
+    /* SPACE CANVAS */
+    #space {
+      position: fixed;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    /* ABOUT */
+    #about {
+      min-height:100vh;
+      background:#000;
+      padding:140px 80px;
+      display:flex;
+      align-items:center;
+      opacity:0;
+      transform:translateY(40px);
+      transition:0.8s ease;
+    }
+    #about.show {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .about-wrap { max-width:900px; }
+
+    .about-hi {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:#FFD700;
+      font-size:22px;
+      margin-bottom:12px;
+    }
+
+    .neon-line {
+      width:40px;
+      height:2px;
+      background:#FFD700;
+      box-shadow:0 0 6px rgba(255,215,0,.8), 0 0 14px rgba(255,215,0,1);
+    }
+
+    .about-name {
+      font-size:60px;
+      font-weight:900;
+      color:#FFD700;
+      margin-bottom:10px;
+      text-shadow:0 0 6px rgba(255,215,0,.6), 0 0 18px rgba(255,215,0,.8);
+    }
+
+    .about-role {
+      font-size:26px;
+      margin-bottom:18px;
+      color:#fff;
+    }
+    .about-role span {
+      color:#FFD700;
+      font-weight:700;
+      text-shadow:0 0 6px rgba(255,215,0,.6);
+    }
+
+    .about-desc {
+      color:#fff;
+      line-height:1.9;
+      max-width:720px;
+      margin-bottom:22px;
+    }
+
+    .about-skills {
+      color:#FFD700;
+      font-weight:600;
+      margin-bottom:35px;
+    }
+
+    /* SOCIAL ICONS IN ABOUT */
+    .about-social {
+      display: flex;
+      gap: 20px;
+    }
+    .about-social a {
+      color: #fff;
+      font-size: 24px;
+      transition: 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+    .about-social a:hover {
+      color: #000;
+      background: #FFD700;
+      box-shadow: 0 0 15px #FFD700;
+      transform: translateY(-5px);
+    }
+
+    /* SKILLS SECTION CSS */
+    #skills {
+      min-height: 100vh;
+      background: #000;
+      padding: 140px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+    }
+    #skills.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .skills-wrap { 
+      max-width: 1200px; 
+      width: 100%;
+    }
+
+    .skills-title {
+      font-size: 52px;
+      font-weight: 900;
+      color: #FFD700;
+      margin-bottom: 80px;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255,215,0,.6);
+      text-transform: uppercase;
+    }
+
+    .skills-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 0px;
+      flex-wrap: wrap;
+    }
+
+    .skills-group {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 45px;
+      padding: 0 30px;
+      border-right: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .skills-group:last-child {
+      border-right: none;
+    }
+
+    .skills-group h3 {
+      font-size: 20px;
+      margin-bottom: 25px;
+      color: #FFD700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .skills-group h3::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 2px;
+      background: #FFD700;
+      margin-top: 8px;
+      box-shadow: 0 0 8px rgba(255,215,0,.7);
+    }
+
+    .skills-group ul {
+      list-style: none;
+    }
+
+    .skills-group ul li {
+      font-size: 18px;
+      margin-bottom: 18px;
+      position: relative;
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    .skills-group ul li i {
+      color: #FFD700;
+      width: 35px;
+      margin-right: 15px;
+      font-size: 24px;
+      text-align: center;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    }
+
+    .skills-group:last-child ul li::before {
+      content: "•";
+      color: #FFD700;
+      font-size: 22px;
+      margin-right: 12px;
+    }
+
+    /* BACKGROUND SECTION */
+    #background {
+      min-height: 100vh;
+      background: #000;
+      padding: 140px 60px;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #background.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .bg-grid {
+      display: flex;
+      width: 100%;
+      max-width: 100%;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .bg-col {
+      flex: 0 1 45%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bg-col h3 {
+      color: #FFD700;
+      font-size: 26px;
+      margin-bottom: 50px;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 3px;
+      border-bottom: 1px solid rgba(255,215,0,0.3);
+      padding-bottom: 15px;
+    }
+
+    .mini-timeline {
+      position: relative;
+    }
+
+    .mini-timeline::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      background: #FFD700;
+      top: 0; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    }
+
+    .mini-item {
+      position: relative;
+      width: 50%;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+
+    .mini-item::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: #000;
+      border: 2px solid #FFD700;
+      border-radius: 50%;
+      top: 25px;
+      z-index: 2;
+      box-shadow: 0 0 10px #FFD700;
+    }
+
+    .mini-left { left: 0; text-align: right; padding-right: 40px; }
+    .mini-left::after { right: -7px; }
+
+    .mini-right { left: 50%; text-align: left; padding-left: 40px; }
+    .mini-right::after { left: -7px; }
+
+    .mini-content span { color: #ffffff; font-weight: bold; font-size: 13px; display: block; margin-bottom: 4px; }
+    .mini-content h4 { color: #FFD700; font-size: 19px; margin: 8px 0; line-height: 1.3; }
+    .mini-content p { color: #ffffff; font-size: 14px; line-height: 1.6; }
+
+    /* --- PROJECTS SECTION --- */
+    #projects {
+      min-height: 300vh;
+      background: #000;
+      padding: 140px 2%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+    }
+    #projects.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .projects-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 30vh; 
+      width: 100%;
+      max-width: 1600px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: row; 
+      background: #0a0a0a;
+      border: 1px solid rgba(255, 215, 0, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.6s ease, opacity 0.6s ease, border-color 0.4s;
+      width: 1000px; 
+      height: 400px; 
+      opacity: 0.1; 
+      transform: translateY(40px);
+      will-change: opacity, transform;
+    }
+
+    .project-card:nth-child(3n+1) { align-self: flex-start; }
+    .project-card:nth-child(3n+2) { align-self: center; }
+    .project-card:nth-child(3n+3) { align-self: flex-end;  }
+
+    .project-card.active-project {
+      opacity: 1;
+      transform: translateY(0) scale(1.05);
+      border-color: #FFD700;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+    }
+
+    .project-img { 
+        flex: 0 0 50%; 
+        height: 100%; 
+        background: transparent; 
+        overflow: hidden; 
+    }
+
+    .project-img img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: fill; 
+        transition: 0.6s ease;
+    }
+    .project-info { 
+      flex: 1;
+      padding: 40px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+    }
+    .project-info h4 { 
+        color: #FFD700; 
+        font-size: 24px; 
+        margin-bottom: 15px; 
+        text-transform: uppercase;
+    }
+    .project-info p { 
+        font-size: 15px; 
+        line-height: 1.6; 
+        color: #ffffff; 
+        margin-bottom: 25px; 
+    }
+    
+    .project-links { display: flex; gap: 15px; }
+    .project-links a { 
+        color: #FFD700; 
+        text-decoration: none; 
+        font-size: 13px; 
+        font-weight: 700; 
+        border: 1.5px solid #FFD700; 
+        padding: 8px 20px; 
+        border-radius: 8px; 
+        transition: 0.3s; 
+    }
+    .project-links a:hover { 
+        background: #FFD700; 
+        color: #000; 
+    }
+
+    /* --- RESUME SECTION --- */
+    #resume {
+      min-height: 100vh;
+      background: #000;
+      padding: 140px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+    }
+    #resume.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .resume-box {
+      width: 100%;
+      max-width: 900px;
+      background: #0a0a0a;
+      border: 1px solid rgba(255, 215, 0, 0.1);
+      border-radius: 30px;
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .resume-box::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, transparent, #FFD700, transparent);
+    }
+    .resume-text {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      color: #ffffff;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: #FFD700;
+      color: #000;
+      padding: 18px 45px;
+      font-size: 16px;
+      font-weight: 800;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: 0.4s;
+      box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+    }
+    .download-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+      background: #fff;
+    }
+
+    /* --- CONTACT SECTION ADDED STYLES --- */
+/* --- RESUME SECTION --- */
+#resume {
+    min-height: 100vh; /* يجعل السكشن بحجم الشاشة كاملة */
+    background: #000;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
+}
+#resume.show { opacity: 1; transform: translateY(0); }
+
+.resume-box {
+    width: 100%;
+    max-width: 800px;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+/* --- CONTACT SECTION (The New Look) --- */
+#contact {
+    min-height: 100vh; /* يجعل التواصل صفحة لوحده */
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.section-title-contact {
+    font-size: 52px;
+    font-weight: 900;
+    color: #FFD700;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); /* تأثير التوهج */
+    text-transform: uppercase;
+}
+
+.contact-text {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #ffffff;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.email-btn {
+    background-color: #FFD700;
+    color: #000;
+    padding: 18px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+}
+
+.email-btn:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+    background-color: #fff;
+}
+
+.social-links-container {
+    margin-top: 80px;
+}
+
+.social-links-container p {
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.social-icons a {
+    color: #FFD700;
+    font-size: 26px;
+    transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: white;
+    transform: translateY(-8px);
+    text-shadow: 0 0 15px #FFD700;
+}
+
+    @keyframes fadeIn {
+      from { opacity:0; }
+      to { opacity:1; }
+    }
+
+    /* RESPONSIVE UPDATES */
+    @media (max-width: 992px) {
+      .hero h1 { font-size: 40px; }
+      .navbar { right: 20px; top: 20px; }
+      .navbar ul { gap: 15px; }
+      .navbar ul li a { font-size: 11px; }
+      .project-card { 
+          width: 100%; 
+          height: auto;
+          flex-direction: column !important;
+          align-self: center !important; 
+      }
+      .project-img { height: 250px; }
+      .project-info { padding: 25px; }
+      .bg-grid { flex-direction: column; }
+      .mini-timeline::after { left: 20px; }
+      .mini-item { width: 100%; text-align: left; padding-left: 50px; padding-right: 0; }
+      .mini-left::after, .mini-right::after { left: 13px; }
+      .about-name { font-size: 40px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <ul>
+    <li><a href="#hero" id="nav-hero" class="active">HOME</a></li>
+    <li><a href="#about" id="nav-about">ABOUT</a></li>
+    <li><a href="#skills" id="nav-skills">SKILLS</a></li>
+    <li><a href="#background" id="nav-background">BACKGROUND</a></li>
+    <li><a href="#projects" id="nav-projects">PROJECTS</a></li>
+    <li><a href="#resume" id="nav-resume">RESUME</a></li>
+    <li><a href="#contact" id="nav-contact">CONTACT</a></li>
+  </ul>
+</div>
+
+  <section class="hero" id="hero">
+    <div class="overlay" id="overlay"></div>
+    <div class="hero-content">
+      <h1>DATA IS EVERYWHERE</h1>
+    </div>
+    <div class="hero-social" id="heroIcons">
+      <a href="https://www.linkedin.com/in/mohamed-helal-data" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.facebook.com/mohamed.nasser.604323" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/m7.helal/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:nasserhelal34@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://wa.me/201019622475" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/201019622475" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+    </div>
+  </section>
+
+  <canvas id="space"></canvas>
+
+  <section id="about">
+    <div class="about-wrap">
+      <h2 class="skills-title" style="text-align: left;">ABOUT</h2>
+      <div class="about-hi">Hi <span class="neon-line"></span> I’m</div>
+      <div class="about-name">Mohamed Helal</div>
+      <div class="about-role">I’m a <span>Data Analyst</span></div>
+      <div class="about-desc">
+        I help business owners understand their data through clear analysis and dashboards
+        enabling them to make confident, data-driven decisions.
+      </div>
+      <div class="about-skills">
+        Power BI | Excel | SQL | Python | R
+      </div>
+      
+      <div class="about-social">
+        <a href="https://www.linkedin.com/in/mohamed-helal-data" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.facebook.com/mohamed.nasser.604323" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/m7.helal/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:nasserhelal34@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/201019622475" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://t.me/201019622475" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="skills-wrap">
+      <h2 class="skills-title">Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skills-group">
+          <h3>Programming</h3>
+          <ul>
+            <li><i class="fa-solid fa-database"></i> SQL</li>
+            <li><i class="fa-brands fa-python"></i> Python</li>
+          </ul>
+        </div>
+        <div class="skills-group">
+          <h3>Analytic Tools</h3>
+          <ul>
+            <li><i class="fa-solid fa-chart-simple"></i> Power BI</li>
+            <li><i class="fa-regular fa-file-excel"></i> Microsoft Excel</li>
+            <li><i class="fa-solid fa-server"></i> SSMS</li>
+            <li><i class="fa-solid fa-code"></i> VS Code</li>
+          </ul>
+        </div>
+        <div class="skills-group">
+          <h3>Visualization</h3>
+          <ul>
+            <li><i class="fa-solid fa-chart-simple"></i> Power BI</li>
+          </ul>
+        </div>
+        <div class="skills-group">
+          <h3>Methods</h3>
+          <ul>
+            <li>EDA</li>
+            <li>Segmentation</li>
+            <li>A/B Testing</li>
+            <li>Regression</li>
+            <li>Cohort Analysis</li>
+            <li>Statistic</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="background">
+    <h2 class="skills-title">Background</h2>
+    <div class="bg-grid">
+      <div class="bg-col">
+        <h3>Experiences</h3>
+        <div class="mini-timeline">
+          <div class="mini-item mini-left">
+            <div class="mini-content">
+              <span>2025</span>
+              <h4>Storekeeper (Inventory & Excel Analysis)</h4>
+              <p style="color: #FFD700; font-weight: bold;">Carban</p>
+              <p>Responsible for periodic inventory tracking, managing stock flow (In/Out), and performing data analysis using Excel.</p>
+            </div>
+          </div>
+          <div class="mini-item mini-right">
+            <div class="mini-content">
+              <span>2020 - 2022</span>
+              <h4>Gym Manager</h4>
+              <p style="color: #FFD700; font-weight: bold;">Sparta Gym</p>
+              <p>Managed the gym's database system via Excel, including member registration and tracking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-col">
+<h3>Education & Training</h3>
+        <div class="mini-timeline">
+          <div class="mini-item mini-left">
+            <div class="mini-content">
+              <span>2023 - 2027</span>
+              <h4>Faculty of Arts – Geography Department</h4>
+              <p>Bachelor’s Degree in Geography</p>
+            </div>
+          </div>
+          <div class="mini-item mini-right">
+            <div class="mini-content">
+              <span>Nov 2025 - Dec 2025</span>
+              <h4>Data Analysis Training</h4>
+              <p style="color: #FFD700; font-weight: bold;">National Telecommunication Institute (NTI)</p>
+              <p>Advanced specialization in data analysis and professional business intelligence tools.</p>
+            </div>
+          </div>
+          <div class="mini-item mini-left">
+            <div class="mini-content">
+              <span>Nov 2025 - Jul 2026</span>
+              <h4>Data Analysis Training</h4>
+              <p style="color: #FFD700; font-weight: bold;">Digital Egypt Pioneers Initiative (DEPI)</p>
+              <p>Advanced specialization in data analysis and professional business intelligence tools.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="projects">
+  <h2 class="skills-title">My Projects</h2>
+  <div class="projects-wrapper">
+    
+<div class="project-card">
+      <div class="project-img">
+        <img src="PRO 1.jpg" alt="Pharmacy Sales Analysis">
+      </div>
+      <div class="project-info">
+        <h4>Pharmacy Sales Analysis</h4>
+        <p>A comprehensive dashboard for pharmacy management, tracking sales trends, top products, and performance metrics using Power BI.</p>
+        <div class="project-links">
+          <a href="https://www.linkedin.com/posts/mohamed-helal-data_powerbi-dataanalysis-pharmacydashboard-activity-7401941516601987072-Oa7K?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFpSJ-4Baz073XHNRnne9tLkOJhm2NwiSSc" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             style="width: 100%; text-align: center;">
+             FULL PROJECT
+          </a>
+        </div>
+      </div>
+    </div>
+
+<div class="project-card">
+      <div class="project-img">
+        <img src="PRO 2.jpg" alt="Pharmacy Sales Analysis">
+      </div>
+      <div class="project-info">
+        <h4>NTI Graduation Project | Data Analysis using Power BI</h4>
+        <p>The dashboard provides insights into sales performance, customer behavior, and overall business trends to support data-driven decision making.</p>
+        <div class="project-links">
+          <a href="https://www.linkedin.com/posts/mohamed-helal-data_dataanalyst-graduationproject-nti-activity-7408154256496635904-U6I1?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFpSJ-4Baz073XHNRnne9tLkOJhm2NwiSSc" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             style="width: 100%; text-align: center;">
+             FULL PROJECT
+          </a>
+        </div>
+      </div>
+    </div>
+
+<div class="project-card">
+      <div class="project-img">
+        <img src="PRO 3.jpg" alt="Pharmacy Sales Analysis">
+      </div>
+      <div class="project-info">
+        <h4>Full Data Analysis Project</h4>
+        <p>Comprehensive project combining Excel, SQL, and Power BI — complete workflow from raw data to visualization and insights.</p>
+        <div class="project-links">
+          <a href="https://www.linkedin.com/posts/mohamed-helal-data_dataanalysis-powerbi-powerquery-activity-7374565608119562240-1Jil?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFpSJ-4Baz073XHNRnne9tLkOJhm2NwiSSc" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             style="width: 100%; text-align: center;">
+             FULL PROJECT
+          </a>
+        </div>
+      </div>
+    </div>
+
+<div class="project-card">
+      <div class="project-img">
+        <img src="PRO 4.jpg" alt="Pharmacy Sales Analysis">
+      </div>
+      <div class="project-info">
+        <h4>From ERD to Database Tables</h4>
+        <p>An end-to-end database design project where I created an ERD from business needs and transformed it into normalized SQL tables with clear relationships and constraints.</p>
+        <div class="project-links">
+          <a href="https://www.linkedin.com/posts/mohamed-helal-data_dataanalysis-databasedesign-sql-activity-7408887060738273280-h4ia?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFpSJ-4Baz073XHNRnne9tLkOJhm2NwiSSc" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             style="width: 100%; text-align: center;">
+             FULL PROJECT
+          </a>
+        </div>
+      </div>
+    </div>
+    
+<div class="project-card">
+      <div class="project-img">
+        <img src="PRO 5.jpg" alt="End-to-End Sales Management & Analytics System">
+      </div>
+      <div class="project-info">
+        <h4>Sales Management & Analytics System</h4>
+        <p>Built a complete sales analytics solution starting from system requirements and database design, through SQL Server development and data preparation, to advanced Power BI dashboards using DAX for performance analysis and business insights.</p>
+        <div class="project-links">
+          <a href="https://www.linkedin.com/posts/mohamed-helal-data_dataanalysis-powerbi-powerquery-activity-7374565608119562240-1Jil?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFpSJ-4Baz073XHNRnne9tLkOJhm2NwiSSc" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             style="width: 100%; text-align: center;">
+             FULL PROJECT
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="resume">
+  <h2 class="skills-title">Resume</h2>
+  <div class="resume-box">
+    <div style="font-size: 50px; color: #FFD700; margin-bottom: 20px;">
+      <i class="far fa-eye"></i>
+    </div>
+    <p class="resume-text">
+Explore my full resume for detailed information about my education, experience, and skills.
+    </p>
+    <a href="https://drive.google.com/file/d/1Mclhu9rq1uY3sjuXxGe6u6_VW0ImZU9Y/view?usp=sharing" target="_blank" class="download-btn">
+      VIEW MY RESUME <i class="far fa-eye"></i>
+    </a>
+  </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title-contact">Contact Me</h2>
+    <p class="contact-text">
+        If you are interested in working with me or have any inquiries, feel free to get in touch!
+    </p>
+    
+    <div class="contact-button-container">
+        <a href="mailto:nasserhelal34@gmail.com" class="email-btn">
+            <i class="fas fa-envelope"></i> SEND ME AN EMAIL
+        </a>
+    </div>
+
+    <div class="social-links-container">
+        <p>Or find me on:</p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/mohamed-helal-data" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/m7.helal/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/mohamed.nasser.604323" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/201019622475" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://t.me/201019622475" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+    </div>
+</section>
+
+  <script>
+    window.addEventListener("scroll", () => {
+      const sections = ['hero', 'about', 'skills', 'background', 'projects', 'resume', 'contact'];
+      const projectCards = document.querySelectorAll(".project-card");
+      const hero = document.getElementById("hero");
+      const overlay = document.getElementById("overlay");
+      const heroContent = document.querySelector(".hero-content");
+      const heroIcons = document.getElementById("heroIcons");
+
+      const y = window.scrollY;
+      const h = window.innerHeight;
+      const p = Math.min(y / h, 1);
+
+      if(hero) hero.style.opacity = 1 - p;
+      if(heroContent) heroContent.style.opacity = 1 - p * 1.2;
+      if(heroIcons) heroIcons.style.opacity = 1 - p * 1.5;
+      if(overlay) overlay.style.opacity = p;
+
+      sections.forEach(id => {
+        const section = document.getElementById(id);
+        const navLink = document.getElementById('nav-' + id);
+        if (section && y >= section.offsetTop - h / 2) {
+          section.classList.add("show");
+          if(navLink) {
+            document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active'));
+            navLink.classList.add("active");
+          }
+        }
+      });
+
+      projectCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.top + rect.height / 2;
+        const screenCenter = h / 2;
+        const distanceToCenter = Math.abs(screenCenter - cardCenter);
+        
+        if (distanceToCenter < 250) {
+          card.classList.add("active-project");
+        } else {
+          card.classList.remove("active-project");
+        }
+      });
+    });
+
+    const canvas = document.getElementById("space");
+    const ctx = canvas.getContext("2d");
+    function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+    window.addEventListener("resize", resize);
+    resize();
+
+    const stars = Array.from({ length: 140 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.4 + 0.4,
+      speed: Math.random() * 0.25 + 0.15
+    }));
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(255,255,255,0.9)";
+      stars.forEach(s => {
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+        s.x += s.speed * 0.6; s.y += s.speed;
+        if (s.y > canvas.height || s.x > canvas.width) {
+          s.y = Math.random() * -50; s.x = Math.random() * canvas.width;
+        }
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+</body>
+</html>
