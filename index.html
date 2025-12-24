@@ -674,8 +674,38 @@
       .mini-left::after, .mini-right::after { left: 13px; }
       .about-name { font-size: 40px; }
     }
+    /* تنسيقات خاصة لشاشات الموبايل */
+@media (max-width: 768px) {
+    /* تصغير حجم كلمة DATA IS EVERYWHERE */
+    .hero-content h1 {
+        font-size: 2rem !important;
+        padding: 0 20px;
+    }
+
+    /* جعل المنيو قابلة للتمرير بالعرض إذا كانت طويلة */
+    .navbar ul {
+        gap: 15px;
+        padding: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        justify-content: flex-start;
+    }
+
+    /* جعل الكروت والمحتوى يملأ عرض الشاشة */
+    .bg-grid, .skills-grid, .projects-wrapper {
+        grid-template-columns: 1fr !important; /* عنصر واحد في كل صف */
+        padding: 10px;
+    }
+
+    /* تعديل سكشن Contact */
+    .social-icons {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+}
   </style>
   <link rel="icon" type="image/x-icon" href="letter-h.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -1041,6 +1071,7 @@ Explore my full resume for detailed information about my education, experience, 
 </body>
 
 </html>
+
 
 
 
