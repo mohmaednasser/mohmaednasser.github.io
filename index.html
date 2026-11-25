@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mohamed Helal - Data Analyst, Database Developer & AI Engineer. SQL Server, Power BI, Excel, Python." />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/favicon.ico" />
+    <title>Mohamed Helal | Data Analyst</title>
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo">MH</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#profile">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">MH</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#profile" onclick="toggleMenu()">Home</a></li>
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#tools" onclick="toggleMenu()">Tools</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="./assets/Smiling Bearded Man in Circular Portrait.png" alt="Mohamed Helal profile picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Mohamed Helal</h1>
+        <p class="section__text__p2">
+          Data Analyst & Database Developer<br />AI Engineer
+        </p>
+        <div class="btn-container">
+          <button class="btn btn-color-2" onclick="window.open('./assets/Mohamed Helal CV.pdf')">
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img src="./assets/linkedin.png" alt="My LinkedIn profile" class="icon"
+            onclick="location.href='https://www.linkedin.com/in/mohamed-helal-data/'" />
+          <img src="./assets/github.png" alt="My GitHub profile" class="icon"
+            onclick="location.href='https://github.com/mohmaednasser/'" />
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img src="./assets/about-pic.png" alt="Mohamed Helal" class="about-pic" />
+        </div>
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img src="./assets/experience.png" alt="Experience icon" class="icon" />
+              <h3>Experience</h3>
+              <p>1+ year <br />Data Analysis & BI</p>
+            </div>
+            <div class="details-container">
+              <img src="./assets/education.png" alt="Education icon" class="icon" />
+              <h3>Education</h3>
+              <p>Zagazig University<br />Geography Dept. (2027)</p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p>
+              Data Analyst, Database Developer & AI Engineer who has delivered
+              30+ data analysis and BI projects and 10+ database and system
+              design projects using SQL Server, Power BI,
+              Excel, and Python. I also build AI solutions, including RAG systems, and automate workflows
+              with n8n. Team Leader of the Data Analysis track in DEPI Round 4,
+              with training from Harvard Online, ITI, NTI, and DEPI. I turn raw
+              data into insights, intelligent systems, and measurable business
+              decisions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experience</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Warehouse Assistant</h2>
+            <p class="job-meta">Carbon Company | Jan 2025 - Mar 2025</p>
+            <p>Maintained real-time inventory records in Excel, built order-tracking reports for management, and flagged low-stock risks for timely reordering.</p>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Gym Manager</h2>
+            <p class="job-meta">Sparta Gym | May 2020 - Nov 2022</p>
+            <p>Led a team of 3 trainers, managed membership records in Excel, and tracked business metrics to support operational decisions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <section id="tools">
+      <p class="section__text__p1">Technologies I Use</p>
+      <h1 class="title">Tools</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Database</h2>
+            <div class="article-container">
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>SQL Server</h3><p>T-SQL</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>SSIS</h3><p>ETL</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>SSRS</h3><p>Reporting</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>SSAS</h3><p>Analysis Services</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>SQL Server Profiler</h3><p>Query tracing</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>SQL Server Tuning Advisor</h3><p>Performance tuning</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>Draw.io</h3><p>Diagrams</p></div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Data Analysis</h2>
+            <div class="article-container">
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>Power BI</h3><p>DAX, Power Query</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>Excel</h3><p>Reports & KPIs</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>Python</h3><p>Analysis</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>DAX Studio</h3><p>DAX queries</p></div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">AI Engineering</h2>
+            <div class="article-container">
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>Python</h3><p>AI & Automation</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>n8n</h3><p>Workflows</p></div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                <div><h3>AI Tools</h3><p>AI-assisted dev</p></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img src="./assets/project-1.png" alt="Gym Management Database Design" class="project-img" />
+            </div>
+            <h2 class="experience-sub-title project-title">Gym Management Database Design</h2>
+            <div class="btn-container">
+              <button class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/mohmaednasser/gym-management-database'">
+                GitHub
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img src="./assets/project-2.png" alt="Road Safety Intelligence Egypt" class="project-img" />
+            </div>
+            <h2 class="experience-sub-title project-title">Road Safety Intelligence Egypt</h2>
+            <div class="btn-container">
+              <button class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/mohmaednasser/Egypt-Car-Accidents-Analysis'">
+                GitHub
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img src="./assets/project-3.png" alt="Electronics Shop Automation Hub" class="project-img" />
+            </div>
+            <h2 class="experience-sub-title project-title">Electronics Shop Automation Hub</h2>
+            <div class="btn-container">
+              <button class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/mohmaednasser/electronics-store-n8n-workflow'">
+                GitHub
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="more-projects">
+        <p>Want to see more projects? Visit my GitHub.</p>
+        <img src="./assets/github.png" alt="My GitHub profile" class="icon"
+          onclick="location.href='https://github.com/mohmaednasser/'" />
+      </div>
+    </section>
+
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon" />
+          <p><a href="mailto:nasserhelal34@gmail.com">Email</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" />
+          <p><a href="https://www.linkedin.com/in/mohamed-helal-data/">LinkedIn</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img src="./assets/github.png" alt="GitHub icon" class="icon contact-icon" />
+          <p><a href="https://github.com/mohmaednasser/">GitHub</a></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+          <li><a href="#tools">Tools</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2026 Mohamed Helal. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
